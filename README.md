@@ -12,7 +12,7 @@ Each turn writes:
 
 The `docs/` viewer replays the history in a browser and is suitable for GitHub Pages.
 
-Once Pages is enabled, the live viewer will be at `https://rohanxg0072.github.io/canvas-agents/`. GitHub also renders `canvas.svg` directly when you open it in the repository.
+Once Pages is enabled, the live viewer will be at `https://rohanxg0072.github.io/canvas-agents-thinking/`. GitHub also renders `canvas.svg` directly when you open it in the repository.
 
 ## Run locally
 
@@ -26,7 +26,7 @@ python3 -m http.server 8000 --directory docs
 
 Open <http://localhost:8000> and use the play controls.
 
-The default model is `Qwen/Qwen3-0.6B` in thinking mode. Each trace stores the raw output, visible `<think>...</think>` reasoning block, and final answer. This variant runs every two hours by default. Set `CANVAS_MODEL` to another Hugging Face Transformers-compatible causal model if desired. The first run downloads model weights; later GitHub Actions runs restore the model cache.
+The default model is `Qwen/Qwen3-0.6B` in thinking mode. Each trace stores the raw output, visible `<think>...</think>` reasoning block, and final answer. This variant runs hourly by default. Set `CANVAS_MODEL` to another Hugging Face Transformers-compatible causal model if desired. The first run downloads model weights; later GitHub Actions runs restore the model cache.
 
 Agent output passes through a fuzzy normalizer that prefers the valid candidate requiring the fewest repairs, then uses lexical similarity as a tie-breaker. It handles prose/fences, quote and key normalization, trailing commas, and loose `x`, `y`, `rgb` formats before using the safe fallback.
 
@@ -38,7 +38,7 @@ python canvas_agents.py --agents 5 --dry-run
 
 ## GitHub Actions
 
-`.github/workflows/agents.yml` runs five sequential turns every two hours and can also be started manually. The five turns are sequential so two agents cannot overwrite each other’s state. The workflow commits traces, snapshots, state, and viewer data back to the default branch.
+`.github/workflows/agents.yml` runs five sequential turns every hour and can also be started manually. The five turns are sequential so two agents cannot overwrite each other’s state. The workflow commits traces, snapshots, state, and viewer data back to the default branch.
 
 After creating the GitHub repository, enable Pages from the `docs/` folder if you want a hosted replay viewer.
 
@@ -48,6 +48,6 @@ From this directory, after refreshing GitHub CLI authentication if needed:
 
 ```bash
 gh auth login -h github.com
-gh repo create canvas-agents --public --source=. --remote=origin --push
+gh repo create canvas-agents-thinking --public --source=. --remote=origin --push
 ```
 
