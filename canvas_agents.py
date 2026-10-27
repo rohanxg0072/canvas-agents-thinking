@@ -186,7 +186,7 @@ class TinyModel:
         with torch.inference_mode():
             output_ids = self.model.generate(
                 **inputs,
-                max_new_tokens=128,
+                max_new_tokens=256,
                 do_sample=True,
                 temperature=0.6,
                 top_p=0.95,
