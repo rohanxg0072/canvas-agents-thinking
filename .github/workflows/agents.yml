@@ -2,7 +2,7 @@ name: Let the agents draw
 
 on:
   schedule:
-    - cron: "13 * * * *"
+    - cron: "17 * * * *"
       timezone: "America/New_York"
   workflow_dispatch:
 
