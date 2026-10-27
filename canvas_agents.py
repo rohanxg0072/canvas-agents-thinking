@@ -194,9 +194,13 @@ class TinyModel:
             )
         generated_ids = output_ids[0][inputs["input_ids"].shape[1]:]
         raw_output = self.tokenizer.decode(generated_ids, skip_special_tokens=True)
-        reasoning_matches = re.findall(r"<think>(.*?)</think>", raw_output, flags=re.DOTALL | re.IGNORECASE)
-        reasoning = "\n".join(reasoning_matches).strip()
-        answer = re.sub(r"<think>.*?</think>", "", raw_output, flags=re.DOTALL | re.IGNORECASE).strip()
+        think_match = re.search(r"<think>(.*?)(?:</think>|$)", raw_output, flags=re.DOTALL | re.IGNORECASE)
+        reasoning = think_match.group(1).strip() if think_match else ""
+        answer = (
+            raw_output[:think_match.start()] + raw_output[think_match.end():]
+            if think_match
+            else raw_output
+        ).strip()
         return {"raw_output": raw_output, "reasoning": reasoning, "answer": answer}
 
 
