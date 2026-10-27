@@ -1,4 +1,4 @@
-# Canvas Agents
+# Canvas Agents — Thinking Variant
 
 Five independent local-model agents take turns adding exactly one RGB pixel to a shared 256×256 canvas. They receive a compact preview of the current canvas, know that other agents may have acted, and are told only to help make the canvas beautiful—no subject, style, or composition is prescribed.
 
@@ -26,7 +26,7 @@ python3 -m http.server 8000 --directory docs
 
 Open <http://localhost:8000> and use the play controls.
 
-The default model is `Qwen/Qwen2.5-0.5B-Instruct`, a fast CPU-friendly model. Each trace stores the raw output, any visible rationale, and final answer. Set `CANVAS_MODEL` to another Hugging Face Transformers-compatible causal model if desired. The first run downloads model weights; later GitHub Actions runs restore the model cache.
+The default model is `Qwen/Qwen3-0.6B` in thinking mode. Each trace stores the raw output, visible `<think>...</think>` reasoning block, and final answer. This variant runs every eight hours by default because thinking-mode CPU inference is slower. Set `CANVAS_MODEL` to another Hugging Face Transformers-compatible causal model if desired. The first run downloads model weights; later GitHub Actions runs restore the model cache.
 
 Agent output passes through a fuzzy normalizer that prefers the valid candidate requiring the fewest repairs, then uses lexical similarity as a tie-breaker. It handles prose/fences, quote and key normalization, trailing commas, and loose `x`, `y`, `rgb` formats before using the safe fallback.
 

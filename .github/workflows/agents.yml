@@ -2,7 +2,7 @@ name: Let the agents draw
 
 on:
   schedule:
-    - cron: "13 */2 * * *"
+    - cron: "13 */8 * * *"
       timezone: "America/New_York"
   workflow_dispatch:
 
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      CANVAS_MODEL: Qwen/Qwen2.5-0.5B-Instruct
+      CANVAS_MODEL: Qwen/Qwen3-0.6B
     steps:
       - uses: actions/checkout@v4
 
