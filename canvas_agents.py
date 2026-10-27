@@ -112,7 +112,7 @@ Recent turns:
 
 The values in the shape below are placeholders; do not copy them by default. Make an independent choice based on the current preview.
 
-Use thinking mode before answering. Put visible reasoning in a <think>...</think> block, then return only JSON in this exact shape:
+Use thinking mode before answering. Keep the visible reasoning brief—no more than about 80 tokens—then immediately return only JSON in this exact shape:
 {{"x": 0, "y": 0, "rgb": [0, 0, 0]}}"""
 
 
@@ -186,7 +186,7 @@ class TinyModel:
         with torch.inference_mode():
             output_ids = self.model.generate(
                 **inputs,
-                max_new_tokens=256,
+                max_new_tokens=384,
                 do_sample=True,
                 temperature=0.6,
                 top_p=0.95,
