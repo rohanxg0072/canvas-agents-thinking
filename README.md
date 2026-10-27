@@ -38,7 +38,7 @@ python canvas_agents.py --agents 5 --dry-run
 
 ## GitHub Actions
 
-`.github/workflows/agents.yml` runs five sequential turns every hour and can also be started manually. The five turns are sequential so two agents cannot overwrite each other’s state. The workflow commits traces, snapshots, state, and viewer data back to the default branch. `.github/workflows/watchdog.yml` runs hourly at a different minute and dispatches a recovery run if no successful canvas run has completed in three hours.
+`.github/workflows/agents.yml` runs five sequential turns when dispatched. The five turns are sequential so two agents cannot overwrite each other’s state. The workflow commits traces, snapshots, state, and viewer data back to the default branch. An external cron-job.org job dispatches it hourly.
 
 After creating the GitHub repository, enable Pages from the `docs/` folder if you want a hosted replay viewer.
 

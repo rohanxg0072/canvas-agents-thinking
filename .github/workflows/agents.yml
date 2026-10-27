@@ -1,9 +1,6 @@
 name: Let the agents draw
 
 on:
-  schedule:
-    - cron: "17 * * * *"
-      timezone: "America/New_York"
   workflow_dispatch:
 
 permissions:
