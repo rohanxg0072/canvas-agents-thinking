@@ -112,9 +112,7 @@ Recent turns:
 
 The values in the shape below are placeholders; do not copy them by default. Make an independent choice based on the current preview.
 
-Think about the choice, then stop thinking and finish the response. Your final answer is mandatory and must be exactly one JSON object, with no prose, markdown, or unfinished thoughts:
-{{"x": 0, "y": 0, "rgb": [0, 0, 0]}}
-The final JSON must appear even if the preview is difficult to interpret."""
+Think about the choice, then stop thinking and finish the response. Your final answer is mandatory: output exactly one JSON object with keys x, y, and rgb. x and y must be integers from 0 through 255; rgb must be an array of three integers from 0 through 255. Do not output an example or placeholder values. The JSON must appear even if the preview is difficult to interpret."""
 
 
 def parse_decision(text: str) -> tuple[int, int, list[int]]:
@@ -187,7 +185,7 @@ class TinyModel:
         with torch.inference_mode():
             output_ids = self.model.generate(
                 **inputs,
-                max_new_tokens=768,
+                max_new_tokens=1024,
                 do_sample=True,
                 temperature=0.6,
                 top_p=0.95,
@@ -210,7 +208,7 @@ class TinyModel:
             return ""
         import torch
 
-        repair_prompt = prompt + "\n\nFORMAT REPAIR: output the JSON object now. No thinking, explanation, markdown, or extra text."
+        repair_prompt = prompt + "\n\nFORMAT REPAIR: the previous response was incomplete. Choose the pixel now and output only one JSON object with keys x, y, and rgb. Use actual integer values from the allowed ranges. No thinking, explanation, markdown, or example values."
         messages = [{"role": "user", "content": repair_prompt}]
         rendered = self.tokenizer.apply_chat_template(
             messages, tokenize=False, add_generation_prompt=True, enable_thinking=False
