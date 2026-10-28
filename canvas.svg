@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="768" height="768" shape-rendering="crispEdges">
 <rect width="256" height="256" fill="#000000"/>
 <rect x="0" y="0" width="1" height="1" fill="#ffffff"/>
-<rect x="0" y="15" width="1" height="1" fill="#ff7b7b"/>
+<rect x="0" y="15" width="1" height="1" fill="#ff8989"/>
 <rect x="0" y="7" width="1" height="1" fill="#ff0000"/>
 <rect x="1" y="0" width="1" height="1" fill="#ff0000"/>
 <rect x="10" y="10" width="1" height="1" fill="#ff0000"/>
@@ -65,6 +65,7 @@
 <rect x="254" y="17" width="1" height="1" fill="#8fd7c5"/>
 <rect x="255" y="255" width="1" height="1" fill="#ffffff"/>
 <rect x="27" y="52" width="1" height="1" fill="#5fb98c"/>
+<rect x="3" y="3" width="1" height="1" fill="#ff0000"/>
 <rect x="35" y="190" width="1" height="1" fill="#614e86"/>
 <rect x="37" y="42" width="1" height="1" fill="#347754"/>
 <rect x="37" y="55" width="1" height="1" fill="#50201f"/>
