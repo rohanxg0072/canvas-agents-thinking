@@ -1310,5 +1310,101 @@
     "timestamp": "2026-10-28T04:50:25.277171Z",
     "x": 0,
     "y": 0
+  },
+  {
+    "agent": 1,
+    "canvas_hash": "b05d2f02bd179731",
+    "previous_rgb": [
+      240,
+      240,
+      240
+    ],
+    "rgb": [
+      164,
+      221,
+      167
+    ],
+    "run": "20261028T051909Z",
+    "source": "model",
+    "step": 81,
+    "timestamp": "2026-10-28T05:22:46.212120Z",
+    "x": 255,
+    "y": 255
+  },
+  {
+    "agent": 2,
+    "canvas_hash": "8fb96a862ae25230",
+    "previous_rgb": null,
+    "rgb": [
+      255,
+      0,
+      0
+    ],
+    "run": "20261028T051909Z",
+    "source": "model",
+    "step": 82,
+    "timestamp": "2026-10-28T05:27:05.914919Z",
+    "x": 1,
+    "y": 0
+  },
+  {
+    "agent": 3,
+    "canvas_hash": "8fb96a862ae25230",
+    "previous_rgb": [
+      164,
+      221,
+      167
+    ],
+    "rgb": [
+      164,
+      221,
+      167
+    ],
+    "run": "20261028T051909Z",
+    "source": "model",
+    "step": 83,
+    "timestamp": "2026-10-28T05:31:58.673328Z",
+    "x": 0,
+    "y": 0
+  },
+  {
+    "agent": 4,
+    "canvas_hash": "18236e9f8f48b9a7",
+    "previous_rgb": [
+      164,
+      221,
+      167
+    ],
+    "rgb": [
+      255,
+      255,
+      255
+    ],
+    "run": "20261028T051909Z",
+    "source": "model",
+    "step": 84,
+    "timestamp": "2026-10-28T05:35:14.267988Z",
+    "x": 0,
+    "y": 0
+  },
+  {
+    "agent": 5,
+    "canvas_hash": "8fb96a862ae25230",
+    "previous_rgb": [
+      255,
+      255,
+      255
+    ],
+    "rgb": [
+      164,
+      221,
+      167
+    ],
+    "run": "20261028T051909Z",
+    "source": "model",
+    "step": 85,
+    "timestamp": "2026-10-28T05:37:29.778308Z",
+    "x": 0,
+    "y": 0
   }
 ]
