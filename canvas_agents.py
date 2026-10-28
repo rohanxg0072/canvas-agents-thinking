@@ -102,7 +102,7 @@ def prompt_for(agent_number: int, canvas: dict, history: list[dict]) -> str:
     ) or "(no previous turns)"
     return f"""You are agent {agent_number} in a shared pixel canvas experiment. Your only broad instruction is: help make the canvas beautiful.
 
-Other agents may have already changed the canvas, and other agents will act after you. You are not told what the canvas is supposed to depict. Inspect the current canvas preview and independently choose exactly one pixel to update. Do not explain a subject, theme, or drawing plan. Just return one JSON object with integer x and y from 0 through 255 and an rgb array of three integers from 0 through 255.
+Other agents may have already changed the canvas, and other agents will act after you. You are not told what the canvas is supposed to depict. Inspect the current preview and independently choose exactly one pixel to update. Do not invent a subject or explain a drawing plan.
 
 Current canvas preview, downsampled to 16x16 (#rrggbb; each row is one line):
 {preview(canvas)}
@@ -112,8 +112,9 @@ Recent turns:
 
 The values in the shape below are placeholders; do not copy them by default. Make an independent choice based on the current preview.
 
-Use thinking mode before answering. Keep the visible reasoning brief—no more than about 80 tokens—then immediately return only JSON in this exact shape:
-{{"x": 0, "y": 0, "rgb": [0, 0, 0]}}"""
+Think about the choice, then stop thinking and finish the response. Your final answer is mandatory and must be exactly one JSON object, with no prose, markdown, or unfinished thoughts:
+{{"x": 0, "y": 0, "rgb": [0, 0, 0]}}
+The final JSON must appear even if the preview is difficult to interpret."""
 
 
 def parse_decision(text: str) -> tuple[int, int, list[int]]:
@@ -186,7 +187,7 @@ class TinyModel:
         with torch.inference_mode():
             output_ids = self.model.generate(
                 **inputs,
-                max_new_tokens=384,
+                max_new_tokens=768,
                 do_sample=True,
                 temperature=0.6,
                 top_p=0.95,
@@ -202,6 +203,28 @@ class TinyModel:
             else raw_output
         ).strip()
         return {"raw_output": raw_output, "reasoning": reasoning, "answer": answer}
+
+    def ask_json_only(self, prompt: str) -> str:
+        """Make a short no-thinking repair pass if Qwen3 used its whole turn thinking."""
+        if self.dry_run:
+            return ""
+        import torch
+
+        repair_prompt = prompt + "\n\nFORMAT REPAIR: output the JSON object now. No thinking, explanation, markdown, or extra text."
+        messages = [{"role": "user", "content": repair_prompt}]
+        rendered = self.tokenizer.apply_chat_template(
+            messages, tokenize=False, add_generation_prompt=True, enable_thinking=False
+        )
+        inputs = self.tokenizer(rendered, return_tensors="pt")
+        inputs = {key: value.to(self.model.device) for key, value in inputs.items()}
+        with torch.inference_mode():
+            output_ids = self.model.generate(
+                **inputs,
+                max_new_tokens=96,
+                do_sample=False,
+            )
+        generated_ids = output_ids[0][inputs["input_ids"].shape[1]:]
+        return self.tokenizer.decode(generated_ids, skip_special_tokens=True).strip()
 
 
 def fallback_decision(canvas: dict, agent_number: int) -> tuple[int, int, list[int]]:
@@ -227,14 +250,23 @@ def main() -> int:
         raw_output = response["raw_output"]
         reasoning_trace = response["reasoning"]
         answer_output = response["answer"]
+        repair_output = ""
         source = "model"
         try:
             x, y, rgb = parse_decision(answer_output or raw_output)
             if (x, y, rgb) == (0, 0, [0, 0, 0]):
                 raise ValueError("model copied the placeholder decision")
         except Exception as exc:
-            x, y, rgb = fallback_decision(canvas, agent_number)
-            source = f"fallback: {exc}"
+            repair_output = model.ask_json_only(prompt)
+            try:
+                x, y, rgb = parse_decision(repair_output)
+                if (x, y, rgb) == (0, 0, [0, 0, 0]):
+                    raise ValueError("repair copied the placeholder decision")
+                answer_output = repair_output
+                source = "model-repair"
+            except Exception:
+                x, y, rgb = fallback_decision(canvas, agent_number)
+                source = f"fallback: {exc}"
 
         step = len(history) + 1
         key = f"{x},{y}"
@@ -259,6 +291,7 @@ def main() -> int:
             "raw_output": raw_output,
             "reasoning_trace": reasoning_trace,
             "answer_output": answer_output,
+            "repair_output": repair_output,
         }
         save_json(TRACE_DIR / f"{run_id}-step-{step:06d}-agent-{agent_number}.json", trace)
         snapshot = {"width": WIDTH, "height": HEIGHT, "step": step, "pixels": canvas["pixels"]}
