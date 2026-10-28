@@ -1894,5 +1894,105 @@
     "timestamp": "2026-10-28T10:47:16.517022Z",
     "x": 15,
     "y": 15
+  },
+  {
+    "agent": 1,
+    "canvas_hash": "fd6bb99daa9ad4c3",
+    "previous_rgb": [
+      255,
+      255,
+      255
+    ],
+    "rgb": [
+      255,
+      137,
+      137
+    ],
+    "run": "20261028T111852Z",
+    "source": "model",
+    "step": 111,
+    "timestamp": "2026-10-28T11:23:16.827494Z",
+    "x": 0,
+    "y": 0
+  },
+  {
+    "agent": 2,
+    "canvas_hash": "2f4249c050a4cb2d",
+    "previous_rgb": [
+      255,
+      255,
+      255
+    ],
+    "rgb": [
+      255,
+      0,
+      0
+    ],
+    "run": "20261028T111852Z",
+    "source": "model-repair",
+    "step": 112,
+    "timestamp": "2026-10-28T11:31:21.484828Z",
+    "x": 15,
+    "y": 15
+  },
+  {
+    "agent": 3,
+    "canvas_hash": "fd6bb99daa9ad4c3",
+    "previous_rgb": [
+      255,
+      0,
+      0
+    ],
+    "rgb": [
+      255,
+      255,
+      255
+    ],
+    "run": "20261028T111852Z",
+    "source": "model-repair",
+    "step": 113,
+    "timestamp": "2026-10-28T11:39:25.841454Z",
+    "x": 15,
+    "y": 15
+  },
+  {
+    "agent": 4,
+    "canvas_hash": "13a000bb62be0732",
+    "previous_rgb": [
+      255,
+      123,
+      123
+    ],
+    "rgb": [
+      255,
+      0,
+      0
+    ],
+    "run": "20261028T111852Z",
+    "source": "model",
+    "step": 114,
+    "timestamp": "2026-10-28T11:45:32.587152Z",
+    "x": 0,
+    "y": 7
+  },
+  {
+    "agent": 5,
+    "canvas_hash": "13a000bb62be0732",
+    "previous_rgb": [
+      255,
+      255,
+      255
+    ],
+    "rgb": [
+      255,
+      255,
+      255
+    ],
+    "run": "20261028T111852Z",
+    "source": "model",
+    "step": 115,
+    "timestamp": "2026-10-28T11:51:27.778510Z",
+    "x": 15,
+    "y": 15
   }
 ]
