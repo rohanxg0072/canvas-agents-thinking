@@ -104,8 +104,10 @@ def prompt_for(agent_number: int, canvas: dict, history: list[dict]) -> str:
 
 Other agents may have already changed the canvas, and other agents will act after you. You are not told what the canvas is supposed to depict. Inspect the current preview and independently choose exactly one pixel to update. Do not invent a subject or explain a drawing plan.
 
-Current canvas preview, downsampled to 16x16 (#rrggbb; each row is one line):
+Current canvas preview, downsampled to 16x16 (#rrggbb; each row is one line). This is only a visual map, not the coordinate system:
 {preview(canvas)}
+
+Coordinate mapping is important: preview column 0 represents full-canvas x=0..15, column 1 represents x=16..31, and so on. Preview row 0 represents y=0..15, row 1 represents y=16..31, and so on. Return full 0..255 canvas coordinates, preferably the center of the chosen preview cell. For example, preview cell (15,15) maps to a full-canvas coordinate around (248,248), not (15,15).
 
 Recent turns:
 {recent_text}
@@ -158,6 +160,27 @@ def parse_decision(text: str) -> tuple[int, int, list[int]]:
     rgb = [int(channel) for channel in value["rgb"]]
     if not (0 <= x < WIDTH and 0 <= y < HEIGHT and len(rgb) == 3 and all(0 <= n <= 255 for n in rgb)):
         raise ValueError("decision is outside the canvas or RGB range")
+    return x, y, rgb
+
+
+def canonicalize_decision(canvas: dict, x: int, y: int, rgb: list[int]) -> tuple[int, int, list[int]]:
+    """Interpret accidental 16x16 preview coordinates and avoid overwriting pixels."""
+    if x < 16 and y < 16:
+        # The model sometimes returns the preview-cell coordinate. Preserve that
+        # visual intent by selecting an unpainted pixel in the corresponding block.
+        x0, y0 = x * 16, y * 16
+        candidates = [
+            (x0 + dx, y0 + dy)
+            for dy in range(16)
+            for dx in range(16)
+        ]
+        candidates.sort(key=lambda point: (abs(point[0] - (x0 + 8)), abs(point[1] - (y0 + 8))))
+        for candidate_x, candidate_y in candidates:
+            if f"{candidate_x},{candidate_y}" not in canvas["pixels"]:
+                return candidate_x, candidate_y, rgb
+        raise ValueError("the model-selected preview block is full")
+    if f"{x},{y}" in canvas["pixels"]:
+        raise ValueError("model selected an already painted pixel")
     return x, y, rgb
 
 
@@ -252,12 +275,14 @@ def main() -> int:
         source = "model"
         try:
             x, y, rgb = parse_decision(answer_output or raw_output)
+            x, y, rgb = canonicalize_decision(canvas, x, y, rgb)
             if (x, y, rgb) == (0, 0, [0, 0, 0]):
                 raise ValueError("model copied the placeholder decision")
         except Exception as exc:
             repair_output = model.ask_json_only(prompt)
             try:
                 x, y, rgb = parse_decision(repair_output)
+                x, y, rgb = canonicalize_decision(canvas, x, y, rgb)
                 if (x, y, rgb) == (0, 0, [0, 0, 0]):
                     raise ValueError("repair copied the placeholder decision")
                 answer_output = repair_output
