@@ -14,6 +14,8 @@
 <rect x="11" y="56" width="1" height="1" fill="#38ae27"/>
 <rect x="111" y="236" width="1" height="1" fill="#cfadf4"/>
 <rect x="114" y="63" width="1" height="1" fill="#e7a8fa"/>
+<rect x="115" y="39" width="1" height="1" fill="#25226d"/>
+<rect x="115" y="61" width="1" height="1" fill="#35c836"/>
 <rect x="118" y="157" width="1" height="1" fill="#518457"/>
 <rect x="119" y="6" width="1" height="1" fill="#4db389"/>
 <rect x="12" y="12" width="1" height="1" fill="#ff0000"/>
@@ -181,6 +183,7 @@
 <rect x="48" y="53" width="1" height="1" fill="#bc78ea"/>
 <rect x="5" y="86" width="1" height="1" fill="#f9bdd9"/>
 <rect x="51" y="26" width="1" height="1" fill="#9ff940"/>
+<rect x="53" y="17" width="1" height="1" fill="#066938"/>
 <rect x="54" y="32" width="1" height="1" fill="#bd26be"/>
 <rect x="56" y="12" width="1" height="1" fill="#80e456"/>
 <rect x="56" y="238" width="1" height="1" fill="#d0c109"/>
@@ -202,8 +205,10 @@
 <rect x="85" y="51" width="1" height="1" fill="#590d91"/>
 <rect x="88" y="99" width="1" height="1" fill="#69b35d"/>
 <rect x="89" y="230" width="1" height="1" fill="#82fd35"/>
+<rect x="9" y="41" width="1" height="1" fill="#ec3dcf"/>
 <rect x="9" y="85" width="1" height="1" fill="#ab2b61"/>
 <rect x="95" y="199" width="1" height="1" fill="#440753"/>
 <rect x="97" y="156" width="1" height="1" fill="#28094a"/>
 <rect x="98" y="15" width="1" height="1" fill="#e8481b"/>
+<rect x="99" y="254" width="1" height="1" fill="#ef3509"/>
 </svg>
