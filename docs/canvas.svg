@@ -65,6 +65,7 @@
 <rect x="173" y="1" width="1" height="1" fill="#59cb58"/>
 <rect x="176" y="40" width="1" height="1" fill="#522fc2"/>
 <rect x="178" y="118" width="1" height="1" fill="#d9ac33"/>
+<rect x="178" y="176" width="1" height="1" fill="#77bce0"/>
 <rect x="178" y="97" width="1" height="1" fill="#a25227"/>
 <rect x="18" y="161" width="1" height="1" fill="#1740f2"/>
 <rect x="180" y="64" width="1" height="1" fill="#c0aedf"/>
@@ -123,10 +124,12 @@
 <rect x="237" y="84" width="1" height="1" fill="#3de8a2"/>
 <rect x="237" y="88" width="1" height="1" fill="#632f48"/>
 <rect x="240" y="252" width="1" height="1" fill="#2ff7cb"/>
+<rect x="240" y="83" width="1" height="1" fill="#85f108"/>
 <rect x="241" y="191" width="1" height="1" fill="#89b8b5"/>
 <rect x="241" y="195" width="1" height="1" fill="#0f3da8"/>
 <rect x="245" y="147" width="1" height="1" fill="#37d6ae"/>
 <rect x="245" y="157" width="1" height="1" fill="#c5f185"/>
+<rect x="246" y="1" width="1" height="1" fill="#833721"/>
 <rect x="246" y="175" width="1" height="1" fill="#23be38"/>
 <rect x="246" y="74" width="1" height="1" fill="#2f7682"/>
 <rect x="247" y="247" width="1" height="1" fill="#509038"/>
@@ -150,6 +153,7 @@
 <rect x="248" y="255" width="1" height="1" fill="#d0c109"/>
 <rect x="248" y="7" width="1" height="1" fill="#c04825"/>
 <rect x="248" y="8" width="1" height="1" fill="#c177aa"/>
+<rect x="249" y="247" width="1" height="1" fill="#ffffff"/>
 <rect x="249" y="248" width="1" height="1" fill="#516320"/>
 <rect x="25" y="45" width="1" height="1" fill="#418b62"/>
 <rect x="251" y="167" width="1" height="1" fill="#32d31f"/>
@@ -175,6 +179,7 @@
 <rect x="54" y="32" width="1" height="1" fill="#bd26be"/>
 <rect x="56" y="12" width="1" height="1" fill="#80e456"/>
 <rect x="56" y="238" width="1" height="1" fill="#d0c109"/>
+<rect x="57" y="160" width="1" height="1" fill="#83b681"/>
 <rect x="61" y="93" width="1" height="1" fill="#27b270"/>
 <rect x="64" y="172" width="1" height="1" fill="#7ff1eb"/>
 <rect x="66" y="201" width="1" height="1" fill="#98eac2"/>
