@@ -166,6 +166,12 @@ def parse_decision(text: str) -> tuple[int, int, list[int]]:
                 value = {"x": int(loose.group(1)), "y": int(loose.group(2)), "rgb": [int(loose.group(3)), int(loose.group(4)), int(loose.group(5))]}
                 repairs = 2
         if isinstance(value, dict) and all(key in value for key in ("x", "y", "rgb")):
+            if isinstance(value["rgb"], str):
+                hex_color = re.fullmatch(r"#?([0-9a-fA-F]{6})", value["rgb"].strip())
+                if hex_color:
+                    encoded = hex_color.group(1)
+                    value = dict(value)
+                    value["rgb"] = [int(encoded[index:index + 2], 16) for index in (0, 2, 4)]
             shape = json.dumps({"x": value["x"], "y": value["y"], "rgb": value["rgb"]}, separators=(",", ":"))
             similarity = difflib.SequenceMatcher(None, shape, canonical).ratio()
             candidates.append((repairs, -similarity, value))
