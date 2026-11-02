@@ -11354,5 +11354,85 @@
     "timestamp": "2026-11-02T00:57:07.617894Z",
     "x": 139,
     "y": 121
+  },
+  {
+    "agent": 1,
+    "canvas_hash": "c37ba173cc0f5c9f",
+    "previous_rgb": null,
+    "rgb": [
+      89,
+      103,
+      81
+    ],
+    "run": "20261102T011941Z",
+    "source": "model",
+    "step": 661,
+    "timestamp": "2026-11-02T01:25:39.354430Z",
+    "x": 249,
+    "y": 240
+  },
+  {
+    "agent": 2,
+    "canvas_hash": "5488590bcaee53bd",
+    "previous_rgb": null,
+    "rgb": [
+      101,
+      54,
+      5
+    ],
+    "run": "20261102T011941Z",
+    "source": "fallback: model did not contain a repairable pixel decision",
+    "step": 662,
+    "timestamp": "2026-11-02T01:34:01.685274Z",
+    "x": 133,
+    "y": 157
+  },
+  {
+    "agent": 3,
+    "canvas_hash": "ef43d18dcfdb19fa",
+    "previous_rgb": null,
+    "rgb": [
+      26,
+      237,
+      242
+    ],
+    "run": "20261102T011941Z",
+    "source": "fallback: model did not contain a repairable pixel decision",
+    "step": 663,
+    "timestamp": "2026-11-02T01:42:23.480188Z",
+    "x": 137,
+    "y": 9
+  },
+  {
+    "agent": 4,
+    "canvas_hash": "517065a563cdd544",
+    "previous_rgb": null,
+    "rgb": [
+      70,
+      239,
+      155
+    ],
+    "run": "20261102T011941Z",
+    "source": "fallback: model did not contain a repairable pixel decision",
+    "step": 664,
+    "timestamp": "2026-11-02T01:50:45.806338Z",
+    "x": 123,
+    "y": 5
+  },
+  {
+    "agent": 5,
+    "canvas_hash": "b4dc113a0b565243",
+    "previous_rgb": null,
+    "rgb": [
+      113,
+      20,
+      219
+    ],
+    "run": "20261102T011941Z",
+    "source": "fallback: model did not contain a repairable pixel decision",
+    "step": 665,
+    "timestamp": "2026-11-02T01:59:08.399096Z",
+    "x": 17,
+    "y": 196
   }
 ]
