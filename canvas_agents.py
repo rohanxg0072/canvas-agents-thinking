@@ -107,7 +107,7 @@ Other agents may have already changed the canvas, and other agents will act afte
 Current canvas preview, downsampled to 16x16 (#rrggbb; each row is one line). This is only a visual map, not the coordinate system:
 {preview(canvas)}
 
-Coordinate mapping is important: preview column 0 represents full-canvas x=0..15, column 1 represents x=16..31, and so on. Preview row 0 represents y=0..15, row 1 represents y=16..31, and so on. Return full 0..255 canvas coordinates, preferably the center of the chosen preview cell. For example, preview cell (15,15) maps to a full-canvas coordinate around (248,248), not (15,15).
+Coordinate mapping is important: preview column c represents full-canvas x=c*16..c*16+15, and preview row r represents y=r*16..r*16+15. Return full 0..255 canvas coordinates, preferably the center of the chosen preview cell. Do not return preview row or column numbers as if they were full-canvas coordinates.
 
 Recent turns:
 {recent_text}
@@ -119,12 +119,16 @@ This is the private reasoning phase. Analyze which preview cell and color would 
 
 def answer_prompt_for(agent_number: int, canvas: dict, history: list[dict]) -> str:
     """Build a compact no-thinking prompt that is easy for a tiny model to finish."""
+    recent = history[-12:]
+    recent_text = ", ".join(f"({item['x']},{item['y']})" for item in recent) or "none"
     return f"""You are agent {agent_number}. Choose one unpainted-looking location that helps make this shared canvas beautiful.
 
 The preview below has 16 columns and 16 rows. It is only a map: preview cell (column c, row r) covers full-canvas x=c*16..c*16+15 and y=r*16..r*16+15. Return full-canvas coordinates, preferably the center of the chosen cell.
 
 PREVIEW:
 {preview(canvas)}
+
+Recently used exact coordinates (avoid repeating them): {recent_text}
 
 Output one JSON object only. Use keys x, y, and rgb. x and y are integers 0..255. rgb is three integers 0..255. No explanation, markdown, or example."""
 
@@ -191,9 +195,18 @@ def canonicalize_decision(canvas: dict, x: int, y: int, rgb: list[int]) -> tuple
             if f"{candidate_x},{candidate_y}" not in canvas["pixels"]:
                 return candidate_x, candidate_y, rgb
         raise ValueError("the model-selected preview block is full")
-    if f"{x},{y}" in canvas["pixels"]:
-        raise ValueError("model selected an already painted pixel")
-    return x, y, rgb
+    if x % 16 == 0 and y % 16 == 0:
+        # Tiny models often return the top-left of a preview block despite the
+        # full-canvas instruction. Move it to that block's center.
+        x, y = min(x + 8, WIDTH - 1), min(y + 8, HEIGHT - 1)
+    if f"{x},{y}" not in canvas["pixels"]:
+        return x, y, rgb
+    for radius in range(1, 17):
+        for dx, dy in ((-radius, 0), (radius, 0), (0, -radius), (0, radius)):
+            candidate_x, candidate_y = x + dx, y + dy
+            if 0 <= candidate_x < WIDTH and 0 <= candidate_y < HEIGHT and f"{candidate_x},{candidate_y}" not in canvas["pixels"]:
+                return candidate_x, candidate_y, rgb
+    raise ValueError("model-selected area is already painted")
 
 
 class TinyModel:
@@ -287,9 +300,9 @@ def main() -> int:
         source = "model-answer"
         try:
             x, y, rgb = parse_decision(answer_output)
-            x, y, rgb = canonicalize_decision(canvas, x, y, rgb)
             if (x, y, rgb) == (0, 0, [0, 0, 0]):
                 raise ValueError("model copied the placeholder decision")
+            x, y, rgb = canonicalize_decision(canvas, x, y, rgb)
         except Exception as exc:
             x, y, rgb = fallback_decision(canvas, agent_number)
             source = f"fallback: {exc}"
