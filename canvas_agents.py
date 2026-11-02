@@ -114,7 +114,19 @@ Recent turns:
 
 The values in the shape below are placeholders; do not copy them by default. Make an independent choice based on the current preview.
 
-Think about the choice, then stop thinking and finish the response. Your final answer is mandatory: output exactly one JSON object with keys x, y, and rgb. x and y must be integers from 0 through 255; rgb must be an array of three integers from 0 through 255. Do not output an example or placeholder values. The JSON must appear even if the preview is difficult to interpret."""
+This is the private reasoning phase. Analyze which preview cell and color would improve the canvas. Do not try to produce JSON in this phase; a separate short answer pass will convert your choice into the required object."""
+
+
+def answer_prompt_for(agent_number: int, canvas: dict, history: list[dict]) -> str:
+    """Build a compact no-thinking prompt that is easy for a tiny model to finish."""
+    return f"""You are agent {agent_number}. Choose one unpainted-looking location that helps make this shared canvas beautiful.
+
+The preview below has 16 columns and 16 rows. It is only a map: preview cell (column c, row r) covers full-canvas x=c*16..c*16+15 and y=r*16..r*16+15. Return full-canvas coordinates, preferably the center of the chosen cell.
+
+PREVIEW:
+{preview(canvas)}
+
+Output one JSON object only. Use keys x, y, and rgb. x and y are integers 0..255. rgb is three integers 0..255. No explanation, markdown, or example."""
 
 
 def parse_decision(text: str) -> tuple[int, int, list[int]]:
@@ -208,7 +220,7 @@ class TinyModel:
         with torch.inference_mode():
             output_ids = self.model.generate(
                 **inputs,
-                max_new_tokens=1024,
+                max_new_tokens=384,
                 do_sample=True,
                 temperature=0.6,
                 top_p=0.95,
@@ -226,13 +238,12 @@ class TinyModel:
         return {"raw_output": raw_output, "reasoning": reasoning, "answer": answer}
 
     def ask_json_only(self, prompt: str) -> str:
-        """Make a short no-thinking repair pass if Qwen3 used its whole turn thinking."""
+        """Run the compact answer pass with thinking disabled."""
         if self.dry_run:
             return ""
         import torch
 
-        repair_prompt = prompt + "\n\nFORMAT REPAIR: the previous response was incomplete. Choose the pixel now and output only one JSON object with keys x, y, and rgb. Use actual integer values from the allowed ranges. No thinking, explanation, markdown, or example values."
-        messages = [{"role": "user", "content": repair_prompt}]
+        messages = [{"role": "user", "content": prompt}]
         rendered = self.tokenizer.apply_chat_template(
             messages, tokenize=False, add_generation_prompt=True, enable_thinking=False
         )
@@ -267,29 +278,21 @@ def main() -> int:
 
     for agent_number in range(1, args.agents + 1):
         prompt = prompt_for(agent_number, canvas, history)
+        answer_prompt = answer_prompt_for(agent_number, canvas, history)
         response = model.ask(prompt)
         raw_output = response["raw_output"]
         reasoning_trace = response["reasoning"]
-        answer_output = response["answer"]
+        answer_output = model.ask_json_only(answer_prompt)
         repair_output = ""
-        source = "model"
+        source = "model-answer"
         try:
-            x, y, rgb = parse_decision(answer_output or raw_output)
+            x, y, rgb = parse_decision(answer_output)
             x, y, rgb = canonicalize_decision(canvas, x, y, rgb)
             if (x, y, rgb) == (0, 0, [0, 0, 0]):
                 raise ValueError("model copied the placeholder decision")
         except Exception as exc:
-            repair_output = model.ask_json_only(prompt)
-            try:
-                x, y, rgb = parse_decision(repair_output)
-                x, y, rgb = canonicalize_decision(canvas, x, y, rgb)
-                if (x, y, rgb) == (0, 0, [0, 0, 0]):
-                    raise ValueError("repair copied the placeholder decision")
-                answer_output = repair_output
-                source = "model-repair"
-            except Exception:
-                x, y, rgb = fallback_decision(canvas, agent_number)
-                source = f"fallback: {exc}"
+            x, y, rgb = fallback_decision(canvas, agent_number)
+            source = f"fallback: {exc}"
 
         step = len(history) + 1
         key = f"{x},{y}"
@@ -311,6 +314,7 @@ def main() -> int:
             "entry": entry,
             "model": MODEL_NAME,
             "prompt": prompt,
+            "answer_prompt": answer_prompt,
             "raw_output": raw_output,
             "reasoning_trace": reasoning_trace,
             "answer_output": answer_output,
