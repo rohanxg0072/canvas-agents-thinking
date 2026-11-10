@@ -495,6 +495,7 @@
 <rect x="148" y="136" width="1" height="1" fill="#769003"/>
 <rect x="148" y="141" width="1" height="1" fill="#000000"/>
 <rect x="148" y="142" width="1" height="1" fill="#769003"/>
+<rect x="148" y="143" width="1" height="1" fill="#769003"/>
 <rect x="148" y="144" width="1" height="1" fill="#7ddda0"/>
 <rect x="148" y="146" width="1" height="1" fill="#769003"/>
 <rect x="148" y="147" width="1" height="1" fill="#769003"/>
@@ -518,6 +519,8 @@
 <rect x="148" y="46" width="1" height="1" fill="#6dfaab"/>
 <rect x="149" y="135" width="1" height="1" fill="#769003"/>
 <rect x="149" y="136" width="1" height="1" fill="#769003"/>
+<rect x="149" y="139" width="1" height="1" fill="#933f72"/>
+<rect x="149" y="140" width="1" height="1" fill="#000000"/>
 <rect x="149" y="141" width="1" height="1" fill="#000000"/>
 <rect x="149" y="142" width="1" height="1" fill="#933f72"/>
 <rect x="149" y="144" width="1" height="1" fill="#000000"/>
@@ -546,6 +549,7 @@
 <rect x="15" y="15" width="1" height="1" fill="#ff0000"/>
 <rect x="150" y="135" width="1" height="1" fill="#769003"/>
 <rect x="150" y="136" width="1" height="1" fill="#769003"/>
+<rect x="150" y="139" width="1" height="1" fill="#933f72"/>
 <rect x="150" y="140" width="1" height="1" fill="#769003"/>
 <rect x="150" y="141" width="1" height="1" fill="#769003"/>
 <rect x="150" y="142" width="1" height="1" fill="#000000"/>
@@ -569,6 +573,7 @@
 <rect x="150" y="160" width="1" height="1" fill="#769003"/>
 <rect x="150" y="161" width="1" height="1" fill="#769003"/>
 <rect x="150" y="163" width="1" height="1" fill="#7ddda0"/>
+<rect x="150" y="164" width="1" height="1" fill="#7ddda0"/>
 <rect x="150" y="184" width="1" height="1" fill="#7ddda0"/>
 <rect x="150" y="221" width="1" height="1" fill="#bb6d5c"/>
 <rect x="151" y="120" width="1" height="1" fill="#769003"/>
