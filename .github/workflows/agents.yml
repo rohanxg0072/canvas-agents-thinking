@@ -49,5 +49,7 @@ jobs:
             echo "No canvas changes to commit"
           else
             git commit -m "chore: record agent canvas round"
-            git push
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
           fi

@@ -94,21 +94,25 @@ def preview(canvas: dict, size: int = 16) -> str:
     return "\n".join(lines)
 
 
+def cell_occupancy_counts(canvas: dict, size: int = 16) -> list[list[int]]:
+    counts = [[0 for _ in range(size)] for _ in range(size)]
+    for key in canvas["pixels"]:
+        x_text, y_text = key.split(",", 1)
+        x, y = int(x_text), int(y_text)
+        column = min(size - 1, x * size // WIDTH)
+        row = min(size - 1, y * size // HEIGHT)
+        counts[row][column] += 1
+    return counts
+
+
 def occupancy_preview(canvas: dict, size: int = 16) -> str:
     """Show how many of the 16x16 full-resolution pixels are already painted."""
-    pixels = canvas["pixels"]
+    counts = cell_occupancy_counts(canvas, size)
     lines = []
     for py in range(size):
         row = []
-        y0, y1 = py * HEIGHT // size, (py + 1) * HEIGHT // size
         for px in range(size):
-            x0, x1 = px * WIDTH // size, (px + 1) * WIDTH // size
-            count = sum(
-                1
-                for y in range(y0, y1)
-                for x in range(x0, x1)
-                if f"{x},{y}" in pixels
-            )
+            count = counts[py][px]
             row.append("." if count == 0 else "1" if count < 16 else "2" if count < 64 else "3" if count < 256 else "F")
         lines.append("".join(row))
     return "\n".join(lines)
@@ -135,8 +139,6 @@ The separate answer step asks for a preview-cell selection, so use this phase to
 Recent turns:
 {recent_text}
 
-The values in the shape below are placeholders; do not copy them by default. Make an independent choice based on the current preview.
-
 This is the private reasoning phase. Analyze which preview cell and color would improve the canvas. Do not try to produce JSON in this phase; a separate short answer pass will convert your choice into the required object."""
 
 
@@ -152,7 +154,7 @@ def answer_prompt_for(agent_number: int, canvas: dict, history: list[dict]) -> s
     recent_color_text = ", ".join("#%02x%02x%02x" % color for color in sorted(recent_colors)) or "none"
     return f"""You are agent {agent_number}. Choose one unpainted-looking location that helps make this shared canvas beautiful.
 
-Choose a preview cell using x and y indices from 0 to 15. Code will place your mark at a free full-resolution pixel inside that cell. The preview has 16 columns and 16 rows.
+Choose a preview cell using x and y indices from 0 to 15. Prefer cells marked . or 1 in the occupancy map; avoid 2, 3, and F when a less-filled nearby cell would also look good. Code will place your mark at a free full-resolution pixel inside or near that cell. The preview has 16 columns and 16 rows.
 
 PREVIEW:
 {preview(canvas)}
@@ -160,8 +162,8 @@ PREVIEW:
 OCCUPANCY (same grid): . empty, 1 lightly filled, 2 partly filled, 3 mostly filled, F full:
 {occupancy_preview(canvas)}
 
-Recently used exact full-canvas coordinates (avoid repeating their area): {recent_text}
-Colors used in the most recent moves (prefer a different color when it fits): {recent_color_text}
+Recently used exact full-canvas coordinates (avoid repeating their immediate area): {recent_text}
+Colors used in the most recent moves (avoid an exact repeat if another color looks equally suitable): {recent_color_text}
 
 Output one JSON object only. Use keys x and y for preview column and row (integers 0..15), and rgb as either three integers 0..255 or a six-digit hex color. No explanation or markdown."""
 
@@ -224,19 +226,43 @@ def canonicalize_decision(
     y: int,
     rgb: list[int],
     history: list[dict],
-) -> tuple[int, int, list[int]]:
-    """Map a preview cell to a free pixel, spreading recent moves within that cell."""
-    if not (0 <= x < 16 and 0 <= y < 16):
-        # Be forgiving if the model still returns full-canvas coordinates.
-        if 0 <= x < WIDTH and 0 <= y < HEIGHT:
-            x, y = x // 16, y // 16
-        else:
-            raise ValueError("preview-cell coordinate is outside the 16x16 grid")
+) -> tuple[int, int, list[int], tuple[int, int], tuple[int, int]]:
+    """Map model coordinates to a lightly occupied cell and a spaced free pixel."""
+    if not (0 <= x < WIDTH and 0 <= y < HEIGHT):
+        raise ValueError("coordinate is outside the canvas")
 
-    x0, y0 = x * 16, y * 16
+    if x < 16 and y < 16:
+        selected_cell = (x, y)
+        preferred_pixel = (x * 16 + 8, y * 16 + 8)
+    else:
+        selected_cell = (x // 16, y // 16)
+        preferred_pixel = (x, y)
+
+    counts = cell_occupancy_counts(canvas)
+    column, row = selected_cell
+    selected_count = counts[row][column]
+    if selected_count >= 16:
+        # Keep the model's general region, while preventing saturated cells from
+        # becoming permanent hotspots. Prefer the nearest lightly occupied cell.
+        eligible = [(cx, cy) for cy in range(16) for cx in range(16) if counts[cy][cx] < 16]
+        if not eligible:
+            eligible = [(cx, cy) for cy in range(16) for cx in range(16) if counts[cy][cx] < 64]
+        if eligible:
+            column, row = min(
+                eligible,
+                key=lambda cell: (
+                    max(abs(cell[0] - selected_cell[0]), abs(cell[1] - selected_cell[1])),
+                    counts[cell[1]][cell[0]],
+                ),
+            )
+
+    placed_cell = (column, row)
+    x0, y0 = column * 16, row * 16
+    if placed_cell != selected_cell:
+        preferred_pixel = (x0 + 8, y0 + 8)
     recent_points = [
         (item["x"], item["y"])
-        for item in history[-24:]
+        for item in history[-5:]
         if x0 <= item.get("x", -1) < x0 + 16 and y0 <= item.get("y", -1) < y0 + 16
     ]
     candidates = [
@@ -253,14 +279,35 @@ def canonicalize_decision(
             return 32
         return min(max(abs(point[0] - old_x), abs(point[1] - old_y)) for old_x, old_y in recent_points)
 
-    spaced = [point for point in candidates if nearest_recent_distance(point) >= 8]
-    pool = spaced or [point for point in candidates if nearest_recent_distance(point) >= 4] or candidates
-    center = (x0 + 8, y0 + 8)
+    spaced = [point for point in candidates if nearest_recent_distance(point) >= 6]
+    pool = spaced or [point for point in candidates if nearest_recent_distance(point) >= 3] or candidates
     chosen_x, chosen_y = min(
         pool,
-        key=lambda point: (-nearest_recent_distance(point), abs(point[0] - center[0]) + abs(point[1] - center[1])),
+        key=lambda point: (
+            -nearest_recent_distance(point),
+            abs(point[0] - preferred_pixel[0]) + abs(point[1] - preferred_pixel[1]),
+        ),
     )
-    return chosen_x, chosen_y, rgb
+    return chosen_x, chosen_y, rgb, selected_cell, placed_cell
+
+
+def diversify_color(rgb: list[int], history: list[dict]) -> tuple[list[int], bool]:
+    """Nudge exact recent color repeats slightly while preserving the model's hue choice."""
+    recent = {
+        tuple(item["rgb"])
+        for item in history[-8:]
+        if isinstance(item.get("rgb"), list) and len(item["rgb"]) == 3
+    }
+    if tuple(rgb) not in recent:
+        return rgb, False
+    channel_order = (2, 1, 0)
+    for delta in (16, -16, 32, -32):
+        for channel in channel_order:
+            adjusted = list(rgb)
+            adjusted[channel] = max(0, min(255, adjusted[channel] + delta))
+            if tuple(adjusted) not in recent and adjusted != rgb:
+                return adjusted, True
+    return rgb, False
 
 
 class TinyModel:
@@ -352,9 +399,15 @@ def main() -> int:
         answer_output = model.ask_json_only(answer_prompt)
         repair_output = ""
         source = "model-answer"
+        selected_cell = None
+        placed_cell = None
+        model_rgb = None
+        color_adjusted = False
         try:
             x, y, rgb = parse_decision(answer_output)
-            x, y, rgb = canonicalize_decision(canvas, x, y, rgb, history)
+            model_rgb = list(rgb)
+            x, y, rgb, selected_cell, placed_cell = canonicalize_decision(canvas, x, y, rgb, history)
+            rgb, color_adjusted = diversify_color(rgb, history)
         except Exception as exc:
             x, y, rgb = fallback_decision(canvas, agent_number)
             source = f"fallback: {exc}"
@@ -371,6 +424,10 @@ def main() -> int:
             "x": x,
             "y": y,
             "rgb": rgb,
+            "model_rgb": model_rgb,
+            "color_adjusted": color_adjusted,
+            "model_selected_cell": list(selected_cell) if selected_cell else None,
+            "placement_cell": list(placed_cell) if placed_cell else None,
             "previous_rgb": previous,
             "source": source,
             "canvas_hash": canvas_hash(canvas),
