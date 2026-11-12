@@ -32244,5 +32244,145 @@
     "timestamp": "2026-11-12T13:25:18.700579Z",
     "x": 200,
     "y": 232
+  },
+  {
+    "agent": 1,
+    "canvas_hash": "211bc074abdda0b1",
+    "color_adjusted": true,
+    "model_rgb": [
+      0,
+      0,
+      0
+    ],
+    "model_selected_cell": [
+      10,
+      15
+    ],
+    "placement_cell": [
+      10,
+      15
+    ],
+    "previous_rgb": null,
+    "rgb": [
+      32,
+      0,
+      0
+    ],
+    "run": "20261112T141919Z",
+    "source": "model-answer",
+    "step": 1921,
+    "timestamp": "2026-11-12T14:21:34.930578Z",
+    "x": 160,
+    "y": 247
+  },
+  {
+    "agent": 2,
+    "canvas_hash": "db8d9f5f631714cb",
+    "color_adjusted": true,
+    "model_rgb": [
+      0,
+      0,
+      16
+    ],
+    "model_selected_cell": [
+      10,
+      15
+    ],
+    "placement_cell": [
+      10,
+      15
+    ],
+    "previous_rgb": null,
+    "rgb": [
+      0,
+      16,
+      16
+    ],
+    "run": "20261112T141919Z",
+    "source": "model-answer",
+    "step": 1922,
+    "timestamp": "2026-11-12T14:23:48.510028Z",
+    "x": 167,
+    "y": 255
+  },
+  {
+    "agent": 3,
+    "canvas_hash": "f4e36115232f46a0",
+    "color_adjusted": true,
+    "model_rgb": [
+      0,
+      0,
+      16
+    ],
+    "model_selected_cell": [
+      10,
+      11
+    ],
+    "placement_cell": [
+      9,
+      12
+    ],
+    "previous_rgb": null,
+    "rgb": [
+      16,
+      0,
+      16
+    ],
+    "run": "20261112T141919Z",
+    "source": "model-answer",
+    "step": 1923,
+    "timestamp": "2026-11-12T14:26:04.385305Z",
+    "x": 152,
+    "y": 199
+  },
+  {
+    "agent": 4,
+    "canvas_hash": "09891dd47d8d93af",
+    "color_adjusted": true,
+    "model_rgb": [
+      0,
+      0,
+      16
+    ],
+    "model_selected_cell": [
+      10,
+      11
+    ],
+    "placement_cell": [
+      11,
+      12
+    ],
+    "previous_rgb": null,
+    "rgb": [
+      0,
+      0,
+      0
+    ],
+    "run": "20261112T141919Z",
+    "source": "model-answer",
+    "step": 1924,
+    "timestamp": "2026-11-12T14:28:20.403682Z",
+    "x": 184,
+    "y": 199
+  },
+  {
+    "agent": 5,
+    "canvas_hash": "b8028a94aa8af95b",
+    "color_adjusted": false,
+    "model_rgb": null,
+    "model_selected_cell": null,
+    "placement_cell": null,
+    "previous_rgb": null,
+    "rgb": [
+      173,
+      7,
+      81
+    ],
+    "run": "20261112T141919Z",
+    "source": "fallback: model did not contain a repairable pixel decision",
+    "step": 1925,
+    "timestamp": "2026-11-12T14:30:31.309455Z",
+    "x": 67,
+    "y": 106
   }
 ]
