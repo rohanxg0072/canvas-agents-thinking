@@ -1975,6 +1975,7 @@
 <rect x="63" y="32" width="1" height="1" fill="#002000"/>
 <rect x="63" y="39" width="1" height="1" fill="#002000"/>
 <rect x="63" y="47" width="1" height="1" fill="#001000"/>
+<rect x="64" y="14" width="1" height="1" fill="#000010"/>
 <rect x="64" y="15" width="1" height="1" fill="#002000"/>
 <rect x="64" y="172" width="1" height="1" fill="#7ff1eb"/>
 <rect x="64" y="54" width="1" height="1" fill="#200000"/>
@@ -1991,6 +1992,7 @@
 <rect x="7" y="40" width="1" height="1" fill="#002000"/>
 <rect x="7" y="44" width="1" height="1" fill="#bd921f"/>
 <rect x="7" y="80" width="1" height="1" fill="#0c43ac"/>
+<rect x="70" y="0" width="1" height="1" fill="#002000"/>
 <rect x="70" y="47" width="1" height="1" fill="#c4c940"/>
 <rect x="71" y="0" width="1" height="1" fill="#000000"/>
 <rect x="71" y="15" width="1" height="1" fill="#001000"/>
@@ -2008,6 +2010,7 @@
 <rect x="72" y="22" width="1" height="1" fill="#000010"/>
 <rect x="72" y="23" width="1" height="1" fill="#002000"/>
 <rect x="72" y="24" width="1" height="1" fill="#000000"/>
+<rect x="72" y="36" width="1" height="1" fill="#001010"/>
 <rect x="72" y="37" width="1" height="1" fill="#000020"/>
 <rect x="72" y="38" width="1" height="1" fill="#100000"/>
 <rect x="72" y="39" width="1" height="1" fill="#000000"/>
@@ -2035,6 +2038,8 @@
 <rect x="79" y="144" width="1" height="1" fill="#bd70de"/>
 <rect x="79" y="15" width="1" height="1" fill="#100000"/>
 <rect x="79" y="223" width="1" height="1" fill="#7e04f9"/>
+<rect x="79" y="4" width="1" height="1" fill="#101000"/>
+<rect x="79" y="53" width="1" height="1" fill="#100000"/>
 <rect x="79" y="54" width="1" height="1" fill="#001010"/>
 <rect x="8" y="0" width="1" height="1" fill="#ffffff"/>
 <rect x="8" y="120" width="1" height="1" fill="#94e479"/>
