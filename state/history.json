@@ -50486,5 +50486,145 @@
     "timestamp": "2026-11-17T19:21:41.781263Z",
     "x": 199,
     "y": 199
+  },
+  {
+    "agent": 1,
+    "canvas_hash": "b6e7a97b58396789",
+    "color_adjusted": true,
+    "model_rgb": [
+      0,
+      0,
+      0
+    ],
+    "model_selected_cell": [
+      10,
+      13
+    ],
+    "placement_cell": [
+      10,
+      13
+    ],
+    "previous_rgb": null,
+    "rgb": [
+      0,
+      0,
+      32
+    ],
+    "run": "20261117T201909Z",
+    "source": "model-answer",
+    "step": 2546,
+    "timestamp": "2026-11-17T20:23:52.252405Z",
+    "x": 168,
+    "y": 216
+  },
+  {
+    "agent": 2,
+    "canvas_hash": "aa7f23bb1e15ffbf",
+    "color_adjusted": false,
+    "model_rgb": null,
+    "model_selected_cell": null,
+    "placement_cell": null,
+    "previous_rgb": null,
+    "rgb": [
+      33,
+      198,
+      53
+    ],
+    "run": "20261117T201909Z",
+    "source": "fallback: model did not contain a repairable pixel decision",
+    "step": 2547,
+    "timestamp": "2026-11-17T20:28:31.902573Z",
+    "x": 244,
+    "y": 119
+  },
+  {
+    "agent": 3,
+    "canvas_hash": "a40ec6642fa1fb76",
+    "color_adjusted": true,
+    "model_rgb": [
+      0,
+      0,
+      16
+    ],
+    "model_selected_cell": [
+      12,
+      11
+    ],
+    "placement_cell": [
+      12,
+      11
+    ],
+    "previous_rgb": null,
+    "rgb": [
+      0,
+      16,
+      16
+    ],
+    "run": "20261117T201909Z",
+    "source": "model-answer",
+    "step": 2548,
+    "timestamp": "2026-11-17T20:33:15.344905Z",
+    "x": 199,
+    "y": 183
+  },
+  {
+    "agent": 4,
+    "canvas_hash": "d04ee9a5c6565189",
+    "color_adjusted": true,
+    "model_rgb": [
+      0,
+      0,
+      16
+    ],
+    "model_selected_cell": [
+      11,
+      15
+    ],
+    "placement_cell": [
+      11,
+      15
+    ],
+    "previous_rgb": null,
+    "rgb": [
+      0,
+      0,
+      0
+    ],
+    "run": "20261117T201909Z",
+    "source": "model-answer",
+    "step": 2549,
+    "timestamp": "2026-11-17T20:37:58.479299Z",
+    "x": 186,
+    "y": 248
+  },
+  {
+    "agent": 5,
+    "canvas_hash": "de77af2f588d2b52",
+    "color_adjusted": true,
+    "model_rgb": [
+      0,
+      0,
+      0
+    ],
+    "model_selected_cell": [
+      7,
+      6
+    ],
+    "placement_cell": [
+      7,
+      6
+    ],
+    "previous_rgb": null,
+    "rgb": [
+      0,
+      16,
+      0
+    ],
+    "run": "20261117T201909Z",
+    "source": "model-answer",
+    "step": 2550,
+    "timestamp": "2026-11-17T20:42:41.080494Z",
+    "x": 119,
+    "y": 103
   }
 ]
