@@ -1562,6 +1562,7 @@
 <rect x="200" y="216" width="1" height="1" fill="#001000"/>
 <rect x="200" y="231" width="1" height="1" fill="#000000"/>
 <rect x="200" y="232" width="1" height="1" fill="#002000"/>
+<rect x="200" y="233" width="1" height="1" fill="#001000"/>
 <rect x="200" y="240" width="1" height="1" fill="#100000"/>
 <rect x="200" y="246" width="1" height="1" fill="#000000"/>
 <rect x="200" y="247" width="1" height="1" fill="#000000"/>
@@ -1665,6 +1666,7 @@
 <rect x="217" y="167" width="1" height="1" fill="#769003"/>
 <rect x="217" y="168" width="1" height="1" fill="#933f72"/>
 <rect x="217" y="218" width="1" height="1" fill="#d7c337"/>
+<rect x="217" y="231" width="1" height="1" fill="#002000"/>
 <rect x="217" y="232" width="1" height="1" fill="#000000"/>
 <rect x="217" y="248" width="1" height="1" fill="#100000"/>
 <rect x="217" y="64" width="1" height="1" fill="#be2394"/>
@@ -1748,10 +1750,12 @@
 <rect x="232" y="208" width="1" height="1" fill="#100010"/>
 <rect x="232" y="215" width="1" height="1" fill="#002010"/>
 <rect x="232" y="216" width="1" height="1" fill="#001010"/>
+<rect x="232" y="217" width="1" height="1" fill="#000010"/>
 <rect x="232" y="230" width="1" height="1" fill="#000000"/>
 <rect x="232" y="231" width="1" height="1" fill="#100020"/>
 <rect x="232" y="232" width="1" height="1" fill="#000010"/>
 <rect x="232" y="233" width="1" height="1" fill="#000000"/>
+<rect x="232" y="234" width="1" height="1" fill="#000000"/>
 <rect x="232" y="24" width="1" height="1" fill="#000000"/>
 <rect x="232" y="240" width="1" height="1" fill="#001000"/>
 <rect x="232" y="244" width="1" height="1" fill="#000000"/>
@@ -1976,6 +1980,7 @@
 <rect x="31" y="37" width="1" height="1" fill="#100000"/>
 <rect x="31" y="38" width="1" height="1" fill="#000000"/>
 <rect x="31" y="39" width="1" height="1" fill="#000020"/>
+<rect x="31" y="54" width="1" height="1" fill="#000000"/>
 <rect x="32" y="0" width="1" height="1" fill="#001000"/>
 <rect x="32" y="14" width="1" height="1" fill="#200000"/>
 <rect x="32" y="15" width="1" height="1" fill="#002000"/>
