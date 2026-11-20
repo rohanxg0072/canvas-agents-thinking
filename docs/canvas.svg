@@ -2206,6 +2206,7 @@
 <rect x="248" y="11" width="1" height="1" fill="#4c5a00"/>
 <rect x="248" y="15" width="1" height="1" fill="#000010"/>
 <rect x="248" y="168" width="1" height="1" fill="#001000"/>
+<rect x="248" y="200" width="1" height="1" fill="#000020"/>
 <rect x="248" y="208" width="1" height="1" fill="#100000"/>
 <rect x="248" y="214" width="1" height="1" fill="#000000"/>
 <rect x="248" y="215" width="1" height="1" fill="#100010"/>
@@ -2378,6 +2379,7 @@
 <rect x="46" y="33" width="1" height="1" fill="#000000"/>
 <rect x="46" y="46" width="1" height="1" fill="#000010"/>
 <rect x="46" y="47" width="1" height="1" fill="#001000"/>
+<rect x="46" y="80" width="1" height="1" fill="#c24a7e"/>
 <rect x="47" y="0" width="1" height="1" fill="#000000"/>
 <rect x="47" y="13" width="1" height="1" fill="#100000"/>
 <rect x="47" y="14" width="1" height="1" fill="#000020"/>
@@ -2450,6 +2452,7 @@
 <rect x="56" y="6" width="1" height="1" fill="#001030"/>
 <rect x="56" y="63" width="1" height="1" fill="#200000"/>
 <rect x="56" y="7" width="1" height="1" fill="#001000"/>
+<rect x="56" y="71" width="1" height="1" fill="#000010"/>
 <rect x="56" y="72" width="1" height="1" fill="#001000"/>
 <rect x="56" y="8" width="1" height="1" fill="#000000"/>
 <rect x="57" y="160" width="1" height="1" fill="#83b681"/>
@@ -2578,6 +2581,7 @@
 <rect x="8" y="56" width="1" height="1" fill="#000000"/>
 <rect x="8" y="63" width="1" height="1" fill="#000020"/>
 <rect x="8" y="7" width="1" height="1" fill="#001000"/>
+<rect x="8" y="72" width="1" height="1" fill="#200000"/>
 <rect x="8" y="8" width="1" height="1" fill="#8baaff"/>
 <rect x="81" y="141" width="1" height="1" fill="#d58418"/>
 <rect x="81" y="71" width="1" height="1" fill="#946cad"/>
@@ -2641,5 +2645,6 @@
 <rect x="98" y="15" width="1" height="1" fill="#e8481b"/>
 <rect x="99" y="178" width="1" height="1" fill="#9e8aed"/>
 <rect x="99" y="209" width="1" height="1" fill="#c82307"/>
+<rect x="99" y="224" width="1" height="1" fill="#000000"/>
 <rect x="99" y="254" width="1" height="1" fill="#ef3509"/>
 </svg>
