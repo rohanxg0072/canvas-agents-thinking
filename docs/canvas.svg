@@ -78,7 +78,10 @@
 <rect x="104" y="160" width="1" height="1" fill="#000010"/>
 <rect x="104" y="167" width="1" height="1" fill="#2af38c"/>
 <rect x="104" y="168" width="1" height="1" fill="#001000"/>
+<rect x="104" y="175" width="1" height="1" fill="#100010"/>
+<rect x="104" y="192" width="1" height="1" fill="#000000"/>
 <rect x="104" y="200" width="1" height="1" fill="#001010"/>
+<rect x="104" y="207" width="1" height="1" fill="#001000"/>
 <rect x="104" y="214" width="1" height="1" fill="#001000"/>
 <rect x="104" y="215" width="1" height="1" fill="#100010"/>
 <rect x="104" y="216" width="1" height="1" fill="#001000"/>
@@ -1188,9 +1191,11 @@
 <rect x="151" y="184" width="1" height="1" fill="#769003"/>
 <rect x="151" y="200" width="1" height="1" fill="#002000"/>
 <rect x="151" y="223" width="1" height="1" fill="#000000"/>
+<rect x="151" y="231" width="1" height="1" fill="#100000"/>
 <rect x="151" y="232" width="1" height="1" fill="#002000"/>
 <rect x="151" y="247" width="1" height="1" fill="#001000"/>
 <rect x="151" y="248" width="1" height="1" fill="#200000"/>
+<rect x="151" y="249" width="1" height="1" fill="#000020"/>
 <rect x="152" y="104" width="1" height="1" fill="#100020"/>
 <rect x="152" y="119" width="1" height="1" fill="#100030"/>
 <rect x="152" y="120" width="1" height="1" fill="#769003"/>
