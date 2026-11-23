@@ -75,6 +75,7 @@
 <rect x="103" y="240" width="1" height="1" fill="#001000"/>
 <rect x="103" y="255" width="1" height="1" fill="#002000"/>
 <rect x="103" y="64" width="1" height="1" fill="#002020"/>
+<rect x="103" y="66" width="1" height="1" fill="#e147a8"/>
 <rect x="103" y="96" width="1" height="1" fill="#000000"/>
 <rect x="104" y="104" width="1" height="1" fill="#001010"/>
 <rect x="104" y="111" width="1" height="1" fill="#001000"/>
@@ -2317,6 +2318,7 @@
 <rect x="234" y="116" width="1" height="1" fill="#99e6ec"/>
 <rect x="234" y="167" width="1" height="1" fill="#7ddda0"/>
 <rect x="234" y="168" width="1" height="1" fill="#933f72"/>
+<rect x="234" y="184" width="1" height="1" fill="#100000"/>
 <rect x="234" y="216" width="1" height="1" fill="#100010"/>
 <rect x="234" y="232" width="1" height="1" fill="#000010"/>
 <rect x="235" y="159" width="1" height="1" fill="#503c3e"/>
@@ -2964,10 +2966,12 @@
 <rect x="88" y="159" width="1" height="1" fill="#000000"/>
 <rect x="88" y="16" width="1" height="1" fill="#000000"/>
 <rect x="88" y="160" width="1" height="1" fill="#002000"/>
+<rect x="88" y="166" width="1" height="1" fill="#200000"/>
 <rect x="88" y="167" width="1" height="1" fill="#100000"/>
 <rect x="88" y="168" width="1" height="1" fill="#000010"/>
 <rect x="88" y="183" width="1" height="1" fill="#000000"/>
 <rect x="88" y="184" width="1" height="1" fill="#001000"/>
+<rect x="88" y="191" width="1" height="1" fill="#000020"/>
 <rect x="88" y="199" width="1" height="1" fill="#000010"/>
 <rect x="88" y="200" width="1" height="1" fill="#100000"/>
 <rect x="88" y="216" width="1" height="1" fill="#000020"/>
@@ -3014,6 +3018,7 @@
 <rect x="96" y="174" width="1" height="1" fill="#001020"/>
 <rect x="96" y="175" width="1" height="1" fill="#000020"/>
 <rect x="96" y="178" width="1" height="1" fill="#26e312"/>
+<rect x="96" y="181" width="1" height="1" fill="#002000"/>
 <rect x="96" y="183" width="1" height="1" fill="#003000"/>
 <rect x="96" y="208" width="1" height="1" fill="#001000"/>
 <rect x="96" y="214" width="1" height="1" fill="#000030"/>
