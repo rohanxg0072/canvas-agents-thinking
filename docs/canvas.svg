@@ -1734,6 +1734,7 @@
 <rect x="168" y="248" width="1" height="1" fill="#100020"/>
 <rect x="168" y="249" width="1" height="1" fill="#000010"/>
 <rect x="168" y="254" width="1" height="1" fill="#3cd490"/>
+<rect x="169" y="120" width="1" height="1" fill="#200000"/>
 <rect x="169" y="136" width="1" height="1" fill="#200000"/>
 <rect x="169" y="143" width="1" height="1" fill="#8b6a25"/>
 <rect x="169" y="150" width="1" height="1" fill="#933f72"/>
@@ -3126,13 +3127,17 @@
 <rect x="72" y="193" width="1" height="1" fill="#486b56"/>
 <rect x="72" y="20" width="1" height="1" fill="#001000"/>
 <rect x="72" y="21" width="1" height="1" fill="#200000"/>
+<rect x="72" y="215" width="1" height="1" fill="#000020"/>
 <rect x="72" y="216" width="1" height="1" fill="#000010"/>
 <rect x="72" y="22" width="1" height="1" fill="#000010"/>
 <rect x="72" y="224" width="1" height="1" fill="#000000"/>
 <rect x="72" y="23" width="1" height="1" fill="#002000"/>
+<rect x="72" y="231" width="1" height="1" fill="#002000"/>
 <rect x="72" y="232" width="1" height="1" fill="#100000"/>
 <rect x="72" y="24" width="1" height="1" fill="#000000"/>
+<rect x="72" y="247" width="1" height="1" fill="#001000"/>
 <rect x="72" y="248" width="1" height="1" fill="#001000"/>
+<rect x="72" y="255" width="1" height="1" fill="#000000"/>
 <rect x="72" y="32" width="1" height="1" fill="#000010"/>
 <rect x="72" y="36" width="1" height="1" fill="#001010"/>
 <rect x="72" y="37" width="1" height="1" fill="#000020"/>
