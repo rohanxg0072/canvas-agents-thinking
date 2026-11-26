@@ -81062,5 +81062,115 @@
     "timestamp": "2026-11-26T12:42:39.189415Z",
     "x": 152,
     "y": 111
+  },
+  {
+    "agent": 1,
+    "canvas_hash": "6fb8bd48c25e1a6d",
+    "color_adjusted": false,
+    "model_rgb": null,
+    "model_selected_cell": null,
+    "placement_cell": null,
+    "previous_rgb": null,
+    "rgb": [
+      197,
+      126,
+      150
+    ],
+    "run": "20261126T131920Z",
+    "source": "fallback: model did not contain a repairable pixel decision",
+    "step": 3591,
+    "timestamp": "2026-11-26T13:24:02.684863Z",
+    "x": 34,
+    "y": 100
+  },
+  {
+    "agent": 2,
+    "canvas_hash": "3070db72ecfbc7b0",
+    "color_adjusted": false,
+    "model_rgb": null,
+    "model_selected_cell": null,
+    "placement_cell": null,
+    "previous_rgb": null,
+    "rgb": [
+      119,
+      103,
+      251
+    ],
+    "run": "20261126T131920Z",
+    "source": "fallback: model did not contain a repairable pixel decision",
+    "step": 3592,
+    "timestamp": "2026-11-26T13:28:45.533167Z",
+    "x": 88,
+    "y": 174
+  },
+  {
+    "agent": 3,
+    "canvas_hash": "78b3a73d657e42ae",
+    "color_adjusted": false,
+    "model_rgb": null,
+    "model_selected_cell": null,
+    "placement_cell": null,
+    "previous_rgb": null,
+    "rgb": [
+      192,
+      202,
+      167
+    ],
+    "run": "20261126T131920Z",
+    "source": "fallback: model did not contain a repairable pixel decision",
+    "step": 3593,
+    "timestamp": "2026-11-26T13:33:27.419568Z",
+    "x": 167,
+    "y": 174
+  },
+  {
+    "agent": 4,
+    "canvas_hash": "43e9e11eee2c3452",
+    "color_adjusted": false,
+    "model_rgb": null,
+    "model_selected_cell": null,
+    "placement_cell": null,
+    "previous_rgb": null,
+    "rgb": [
+      188,
+      254,
+      28
+    ],
+    "run": "20261126T131920Z",
+    "source": "fallback: model did not contain a repairable pixel decision",
+    "step": 3594,
+    "timestamp": "2026-11-26T13:38:09.344905Z",
+    "x": 53,
+    "y": 175
+  },
+  {
+    "agent": 5,
+    "canvas_hash": "81c81899a34d8caa",
+    "color_adjusted": true,
+    "model_rgb": [
+      0,
+      16,
+      32
+    ],
+    "model_selected_cell": [
+      15,
+      15
+    ],
+    "placement_cell": [
+      11,
+      8
+    ],
+    "previous_rgb": null,
+    "rgb": [
+      0,
+      16,
+      48
+    ],
+    "run": "20261126T131920Z",
+    "source": "model-answer",
+    "step": 3595,
+    "timestamp": "2026-11-26T13:42:53.570264Z",
+    "x": 183,
+    "y": 137
   }
 ]
