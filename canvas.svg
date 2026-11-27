@@ -2273,6 +2273,7 @@
 <rect x="215" y="247" width="1" height="1" fill="#000020"/>
 <rect x="215" y="248" width="1" height="1" fill="#100000"/>
 <rect x="215" y="249" width="1" height="1" fill="#000020"/>
+<rect x="216" y="120" width="1" height="1" fill="#000020"/>
 <rect x="216" y="128" width="1" height="1" fill="#000000"/>
 <rect x="216" y="134" width="1" height="1" fill="#100000"/>
 <rect x="216" y="135" width="1" height="1" fill="#100000"/>
@@ -3009,10 +3010,12 @@
 <rect x="56" y="0" width="1" height="1" fill="#000000"/>
 <rect x="56" y="1" width="1" height="1" fill="#002000"/>
 <rect x="56" y="12" width="1" height="1" fill="#80e456"/>
+<rect x="56" y="134" width="1" height="1" fill="#000000"/>
 <rect x="56" y="135" width="1" height="1" fill="#001000"/>
 <rect x="56" y="136" width="1" height="1" fill="#000020"/>
 <rect x="56" y="143" width="1" height="1" fill="#200000"/>
 <rect x="56" y="144" width="1" height="1" fill="#001000"/>
+<rect x="56" y="148" width="1" height="1" fill="#001000"/>
 <rect x="56" y="149" width="1" height="1" fill="#000000"/>
 <rect x="56" y="15" width="1" height="1" fill="#000000"/>
 <rect x="56" y="150" width="1" height="1" fill="#000000"/>
@@ -3171,6 +3174,7 @@
 <rect x="72" y="151" width="1" height="1" fill="#000000"/>
 <rect x="72" y="152" width="1" height="1" fill="#101000"/>
 <rect x="72" y="159" width="1" height="1" fill="#000000"/>
+<rect x="72" y="160" width="1" height="1" fill="#002000"/>
 <rect x="72" y="161" width="1" height="1" fill="#100000"/>
 <rect x="72" y="162" width="1" height="1" fill="#000010"/>
 <rect x="72" y="163" width="1" height="1" fill="#002000"/>
@@ -3444,6 +3448,7 @@
 <rect x="89" y="129" width="1" height="1" fill="#aa90d6"/>
 <rect x="89" y="136" width="1" height="1" fill="#002000"/>
 <rect x="89" y="139" width="1" height="1" fill="#11d7ee"/>
+<rect x="89" y="152" width="1" height="1" fill="#200000"/>
 <rect x="89" y="167" width="1" height="1" fill="#000010"/>
 <rect x="89" y="168" width="1" height="1" fill="#001000"/>
 <rect x="89" y="183" width="1" height="1" fill="#002000"/>
